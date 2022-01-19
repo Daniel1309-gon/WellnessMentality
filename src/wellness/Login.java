@@ -21,12 +21,12 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      */
-    
     String user = "root";
     String password = "";
     String usuarioSISTEMA;
     public static String usuarioIngresado;
-    char [] clave;
+    char[] clave;
+
     public Login() {
         initComponents();
         setLocationRelativeTo(null);
@@ -103,9 +103,7 @@ public class Login extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 70, Short.MAX_VALUE)
         );
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 740, 70));
@@ -176,8 +174,8 @@ public class Login extends javax.swing.JFrame {
         Registro interRegistro = new Registro();
         interRegistro.setVisible(true);
         this.setVisible(false);
-        
-        
+
+
     }//GEN-LAST:event_btnAbrirRegistroActionPerformed
 
     private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
@@ -186,22 +184,26 @@ public class Login extends javax.swing.JFrame {
             char[] contraseñaIngresada = txtContraseña.getPassword();
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
             PreparedStatement pst = con.prepareStatement("SELECT * FROM infoclientes WHERE Correo = ?");
-            
+
             pst.setString(1, usuarioIngresado);
-            ResultSet rs = pst.executeQuery();
-            
-            while(rs.next()){
-                usuarioSISTEMA = rs.getString("Correo");
-                clave = rs.getString("Password").toCharArray();
-                
-                if(usuarioIngresado.equals(usuarioSISTEMA) && Arrays.equals(contraseñaIngresada, clave)){
-                    Main interMain = new Main();
-                    this.setVisible(false);
-                    interMain.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(null, "Datos incorrectos, vuelve a intentar");
+            if (!txtCorreo.getText().equals("") && !(txtContraseña.getPassword().length == 0)) {
+                ResultSet rs = pst.executeQuery();
+                while (rs.next()) {
+                    usuarioSISTEMA = rs.getString("Correo");
+                    clave = rs.getString("Password").toCharArray();
+
+                    if (usuarioIngresado.equals(usuarioSISTEMA) && Arrays.equals(contraseñaIngresada, clave)) {
+                        Main interMain = new Main();
+                        this.setVisible(false);
+                        interMain.setVisible(true);
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Datos incorrectos, vuelve a intentar");
+                    }
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Datos incompletos");
             }
+
         } catch (SQLException e) {
             System.out.println(e);
         }
