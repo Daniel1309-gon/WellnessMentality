@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package wellness;
+package Administrador;
 
-import Administrador.*;
+import wellness.*;
 import java.awt.Color;
 import java.sql.*;
 import java.util.Arrays;
@@ -17,7 +17,7 @@ import org.w3c.dom.css.RGBColor;
  *
  * @author danig
  */
-public class Login extends javax.swing.JFrame {
+public class LoginAdmin extends javax.swing.JFrame {
 
     /**
      * Creates new form Login
@@ -28,7 +28,7 @@ public class Login extends javax.swing.JFrame {
     public static String usuarioIngresado;
     char[] clave;
 
-    public Login() {
+    public LoginAdmin() {
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Wellness Mentality");
@@ -52,9 +52,9 @@ public class Login extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         txtCorreo = new javax.swing.JTextField();
         txtContraseña = new javax.swing.JPasswordField();
+        btnVolver = new javax.swing.JButton();
+        btnLogin = new javax.swing.JButton();
         btnAbrirRegistro = new javax.swing.JButton();
-        btnAdmin = new javax.swing.JButton();
-        btnLogin1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,7 +69,7 @@ public class Login extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Roboto Medium", 0, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("WellnessMentality");
+        jLabel1.setText("WellnessMentality - Administración");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -131,6 +131,29 @@ public class Login extends javax.swing.JFrame {
         txtContraseña.setToolTipText("Ingresa tu contraseña");
         jPanel1.add(txtContraseña, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 220, 340, -1));
 
+        btnVolver.setBackground(new java.awt.Color(153, 0, 102));
+        btnVolver.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        btnVolver.setForeground(new java.awt.Color(255, 255, 255));
+        btnVolver.setText("Volver");
+        btnVolver.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVolver, new org.netbeans.lib.awtextra.AbsoluteConstraints(680, 370, -1, -1));
+
+        btnLogin.setBackground(new java.awt.Color(153, 0, 102));
+        btnLogin.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        btnLogin.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogin.setText("Ingresar");
+        btnLogin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLoginActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, -1, -1));
+
         btnAbrirRegistro.setBackground(new java.awt.Color(153, 0, 102));
         btnAbrirRegistro.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
         btnAbrirRegistro.setForeground(new java.awt.Color(255, 255, 255));
@@ -142,28 +165,6 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnAbrirRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
-
-        btnAdmin.setBackground(new java.awt.Color(153, 0, 102));
-        btnAdmin.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        btnAdmin.setForeground(new java.awt.Color(255, 255, 255));
-        btnAdmin.setText("Ingresar como admin.");
-        btnAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAdminActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAdmin, new org.netbeans.lib.awtextra.AbsoluteConstraints(560, 370, 170, 20));
-
-        btnLogin1.setBackground(new java.awt.Color(153, 0, 102));
-        btnLogin1.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        btnLogin1.setForeground(new java.awt.Color(255, 255, 255));
-        btnLogin1.setText("Ingresar");
-        btnLogin1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLogin1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnLogin1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -183,26 +184,18 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtCorreoActionPerformed
 
-    private void btnAbrirRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirRegistroActionPerformed
-        Registro interRegistro = new Registro();
-        interRegistro.setVisible(true);
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        Login login = new Login();
+        login.setVisible(true);
         this.setVisible(false);
+    }//GEN-LAST:event_btnVolverActionPerformed
 
-
-    }//GEN-LAST:event_btnAbrirRegistroActionPerformed
-
-    private void btnAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAdminActionPerformed
-        LoginAdmin loginAdmin = new LoginAdmin();
-        loginAdmin.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnAdminActionPerformed
-
-    private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
+    private void btnLoginActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLoginActionPerformed
         try {
             String usuarioIngresado = txtCorreo.getText().trim();
             char[] contraseñaIngresada = txtContraseña.getPassword();
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
-            PreparedStatement pst = con.prepareStatement("SELECT * FROM infoclientes WHERE Correo = ?");
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM infoadmin WHERE Correo = ?");
 
             pst.setString(1, usuarioIngresado);
             if (!txtCorreo.getText().equals("") && !(txtContraseña.getPassword().length == 0)) {
@@ -212,9 +205,9 @@ public class Login extends javax.swing.JFrame {
                     clave = rs.getString("Password").toCharArray();
 
                     if (usuarioIngresado.equals(usuarioSISTEMA) && Arrays.equals(contraseñaIngresada, clave)) {
-                        Main interMain = new Main();
+                        MainAdmin mainAdmin = new MainAdmin();
                         this.setVisible(false);
-                        interMain.setVisible(true);
+                        mainAdmin.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Datos incorrectos, vuelve a intentar");
                     }
@@ -226,7 +219,13 @@ public class Login extends javax.swing.JFrame {
         } catch (SQLException e) {
             System.out.println(e);
         }
-    }//GEN-LAST:event_btnLogin1ActionPerformed
+    }//GEN-LAST:event_btnLoginActionPerformed
+
+    private void btnAbrirRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirRegistroActionPerformed
+        Registro interRegistro = new Registro();
+        interRegistro.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnAbrirRegistroActionPerformed
 
     /**
      * @param args the command line arguments
@@ -245,14 +244,18 @@ public class Login extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(LoginAdmin.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
         //</editor-fold>
         //</editor-fold>
@@ -261,15 +264,15 @@ public class Login extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                new LoginAdmin().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAbrirRegistro;
-    private javax.swing.JButton btnAdmin;
-    private javax.swing.JButton btnLogin1;
+    private javax.swing.JButton btnLogin;
+    private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

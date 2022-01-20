@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package wellness;
+package Administrador;
 
 import javax.swing.JOptionPane;
 
@@ -83,10 +83,14 @@ public class Arbol implements InterfazArbol<Empleado> {
 
     @Override
     public void preOrder() {
+        preOrderImpl("");
+    }
+    
+    private void preOrderImpl(String prefijo){
         if(valor != null){
-            System.out.println(valor);
-            if(izdo != null) izdo.preOrder();
-            if(derecho != null) derecho.preOrder();
+            System.out.println(prefijo + valor);
+            if(izdo != null) izdo.preOrderImpl(prefijo + "  ");
+            if(derecho != null) derecho.preOrderImpl(prefijo + "  ");
         }
     }
 

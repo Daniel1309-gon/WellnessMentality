@@ -32,6 +32,8 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
+        btnAbrirRegistro = new javax.swing.JButton();
+        btnAbrirRegistro1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -82,6 +84,30 @@ public class Main extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 740, 80));
 
+        btnAbrirRegistro.setBackground(new java.awt.Color(153, 0, 102));
+        btnAbrirRegistro.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        btnAbrirRegistro.setForeground(new java.awt.Color(255, 255, 255));
+        btnAbrirRegistro.setText("No tienes cuenta? Crea una al instante");
+        btnAbrirRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAbrirRegistro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirRegistroActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAbrirRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
+
+        btnAbrirRegistro1.setBackground(new java.awt.Color(153, 0, 102));
+        btnAbrirRegistro1.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        btnAbrirRegistro1.setForeground(new java.awt.Color(255, 255, 255));
+        btnAbrirRegistro1.setText("No tienes cuenta? Crea una al instante");
+        btnAbrirRegistro1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnAbrirRegistro1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAbrirRegistro1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnAbrirRegistro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -95,6 +121,17 @@ public class Main extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnAbrirRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirRegistroActionPerformed
+        Registro interRegistro = new Registro();
+        interRegistro.setVisible(true);
+        this.setVisible(false);
+
+    }//GEN-LAST:event_btnAbrirRegistroActionPerformed
+
+    private void btnAbrirRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirRegistro1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnAbrirRegistro1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,6 +172,8 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAbrirRegistro;
+    private javax.swing.JButton btnAbrirRegistro1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
