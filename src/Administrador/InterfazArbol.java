@@ -4,6 +4,8 @@
  */
 package Administrador;
 
+import javax.swing.JTextArea;
+
 /**
  *
  * @author danig
@@ -20,11 +22,11 @@ public interface InterfazArbol<Empleado extends Comparable>{
     
     boolean esVacio();
     
-    void preOrder();
+    void preOrder(JTextArea area);
     
-    void inOrder();
+    void inOrder(JTextArea area);
     
-    void postOrden();
+    void postOrder(JTextArea area);
     
     void eliminar(int id);
     

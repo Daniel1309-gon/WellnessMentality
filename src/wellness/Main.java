@@ -5,6 +5,7 @@
  */
 package wellness;
 
+import java.sql.*;
 /**
  *
  * @author danig
@@ -14,8 +15,12 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    
+    String user = "root";
+    String password = "";
     public Main() {
         initComponents();
+        setLocationRelativeTo(null);
     }
 
     /**
@@ -32,8 +37,9 @@ public class Main extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        btnAbrirRegistro = new javax.swing.JButton();
-        btnAbrirRegistro1 = new javax.swing.JButton();
+        btnLogros = new javax.swing.JButton();
+        btnSalir = new javax.swing.JButton();
+        btnMetas = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -84,29 +90,41 @@ public class Main extends javax.swing.JFrame {
 
         jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 400, 740, 80));
 
-        btnAbrirRegistro.setBackground(new java.awt.Color(153, 0, 102));
-        btnAbrirRegistro.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        btnAbrirRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        btnAbrirRegistro.setText("No tienes cuenta? Crea una al instante");
-        btnAbrirRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAbrirRegistro.addActionListener(new java.awt.event.ActionListener() {
+        btnLogros.setBackground(new java.awt.Color(153, 0, 102));
+        btnLogros.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        btnLogros.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogros.setText("Tus logros");
+        btnLogros.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnLogros.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirRegistroActionPerformed(evt);
+                btnLogrosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAbrirRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 250, -1, -1));
+        jPanel1.add(btnLogros, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 180, 140, 80));
 
-        btnAbrirRegistro1.setBackground(new java.awt.Color(153, 0, 102));
-        btnAbrirRegistro1.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        btnAbrirRegistro1.setForeground(new java.awt.Color(255, 255, 255));
-        btnAbrirRegistro1.setText("No tienes cuenta? Crea una al instante");
-        btnAbrirRegistro1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAbrirRegistro1.addActionListener(new java.awt.event.ActionListener() {
+        btnSalir.setBackground(new java.awt.Color(153, 0, 102));
+        btnSalir.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        btnSalir.setForeground(new java.awt.Color(255, 255, 255));
+        btnSalir.setText("Salir");
+        btnSalir.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnSalir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirRegistro1ActionPerformed(evt);
+                btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnAbrirRegistro1, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(660, 370, 70, -1));
+
+        btnMetas.setBackground(new java.awt.Color(153, 0, 102));
+        btnMetas.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
+        btnMetas.setForeground(new java.awt.Color(255, 255, 255));
+        btnMetas.setText("Tus metas");
+        btnMetas.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        btnMetas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMetasActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnMetas, new org.netbeans.lib.awtextra.AbsoluteConstraints(120, 180, 140, 80));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -122,16 +140,37 @@ public class Main extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnAbrirRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirRegistroActionPerformed
-        Registro interRegistro = new Registro();
-        interRegistro.setVisible(true);
+    private void btnLogrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogrosActionPerformed
+        
+    }//GEN-LAST:event_btnLogrosActionPerformed
+
+    private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
+        Login login  = new Login();
+        login.setVisible(true);
         this.setVisible(false);
+    }//GEN-LAST:event_btnSalirActionPerformed
 
-    }//GEN-LAST:event_btnAbrirRegistroActionPerformed
-
-    private void btnAbrirRegistro1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirRegistro1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnAbrirRegistro1ActionPerformed
+    private void btnMetasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMetasActionPerformed
+        Metas metas = new Metas();
+        int idUsuario;
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            PreparedStatement ps = con.prepareStatement("SELECT * FROM infoclientes WHERE Nombre = ?");
+            
+            ps.setString(1, jLabel1.getText().trim().substring(11));
+            ResultSet rs = ps.executeQuery();
+            
+            while(rs.next()){
+                //metas.idTxt.setText(rs.getString("ID"));
+                metas.idLabel.setText(rs.getString("ID"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+        
+        this.setVisible(false);
+        metas.setVisible(true);
+    }//GEN-LAST:event_btnMetasActionPerformed
 
     /**
      * @param args the command line arguments
@@ -172,9 +211,10 @@ public class Main extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbrirRegistro;
-    private javax.swing.JButton btnAbrirRegistro1;
-    private javax.swing.JLabel jLabel1;
+    private javax.swing.JButton btnLogros;
+    private javax.swing.JButton btnMetas;
+    private javax.swing.JButton btnSalir;
+    public javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

@@ -5,6 +5,7 @@
 package Administrador;
 
 import javax.swing.JOptionPane;
+import javax.swing.JTextArea;
 
 /**
  *
@@ -82,33 +83,42 @@ public class Arbol implements InterfazArbol<Empleado> {
     }
 
     @Override
-    public void preOrder() {
-        preOrderImpl("");
+    public void preOrder(JTextArea area) {
+        preOrderImpl("", area);
     }
     
-    private void preOrderImpl(String prefijo){
+    private void preOrderImpl(String prefijo, JTextArea area){
         if(valor != null){
+            //System.out.println(prefijo + valor);
+            area.append(prefijo + valor + "\n");
+            if(izdo != null) izdo.preOrderImpl(prefijo + "    ", area);
+            if(derecho != null) derecho.preOrderImpl(prefijo + "    ", area);
+        }
+    }
+
+    @Override
+    public void inOrder(JTextArea area) {
+        inOrderImpl("", area);
+    }
+    public void inOrderImpl(String prefijo, JTextArea area) {
+        if(valor != null){
+            if(izdo != null) izdo.inOrderImpl(prefijo + "    ", area);
             System.out.println(prefijo + valor);
-            if(izdo != null) izdo.preOrderImpl(prefijo + "  ");
-            if(derecho != null) derecho.preOrderImpl(prefijo + "  ");
+            area.append(prefijo + valor + "\n");
+            if(derecho != null) derecho.inOrderImpl(prefijo + "    ", area);
         }
     }
 
     @Override
-    public void inOrder() {
-        if(valor != null){
-            if(izdo != null) izdo.inOrder();
-            System.out.println(valor);
-            if(derecho != null) derecho.inOrder();
-        }
+    public void postOrder(JTextArea area) {
+        postOrderImpl("", area);
     }
-
-    @Override
-    public void postOrden() {
+    public void postOrderImpl(String prefijo, JTextArea area) {
         if(valor != null){
-            if(izdo != null) izdo.postOrden();
-            if(derecho != null) derecho.postOrden();
-            System.out.println(valor);
+            if(izdo != null) izdo.postOrderImpl(prefijo + "    ", area);
+            if(derecho != null) derecho.postOrderImpl(prefijo + "    ", area);
+            System.out.println(prefijo + valor);
+            area.append(prefijo + valor + "\n");
         }
     }
 

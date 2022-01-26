@@ -213,7 +213,9 @@ public class Login extends javax.swing.JFrame {
 
                     if (usuarioIngresado.equals(usuarioSISTEMA) && Arrays.equals(contraseñaIngresada, clave)) {
                         Main interMain = new Main();
+                        interMain.jLabel1.setText("BIENVENIDO " + rs.getString("Nombre"));
                         this.setVisible(false);
+                        
                         interMain.setVisible(true);
                     } else {
                         JOptionPane.showMessageDialog(null, "Datos incorrectos, vuelve a intentar");

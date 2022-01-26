@@ -8,11 +8,11 @@ package Administrador;
  *
  * @author danig
  */
-
 import java.sql.*;
+import javax.swing.JOptionPane;
 
 public class MainAdmin extends javax.swing.JFrame {
-    
+
     String user = "root";
     String password = "";
 
@@ -20,7 +20,7 @@ public class MainAdmin extends javax.swing.JFrame {
      * Creates new form MainAdmin
      */
     public MainAdmin() {
-        setLocationRelativeTo(null);
+        setLocation(580, 250);
         initComponents();
     }
 
@@ -39,11 +39,15 @@ public class MainAdmin extends javax.swing.JFrame {
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         btnSalir = new javax.swing.JButton();
-        btnGestionEmpleados = new javax.swing.JButton();
-        btnGestionClientes = new javax.swing.JButton();
+        btnVerEmpleados = new javax.swing.JButton();
+        btnDespedir = new javax.swing.JButton();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        area1 = new javax.swing.JTextArea();
+        btnVerClientes = new javax.swing.JButton();
+        btnContratar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(740, 480));
+        setSize(new java.awt.Dimension(740, 480));
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -105,29 +109,59 @@ public class MainAdmin extends javax.swing.JFrame {
                 btnSalirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(630, 370, 100, 20));
+        jPanel1.add(btnSalir, new org.netbeans.lib.awtextra.AbsoluteConstraints(620, 370, 100, 20));
 
-        btnGestionEmpleados.setBackground(new java.awt.Color(153, 0, 102));
-        btnGestionEmpleados.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        btnGestionEmpleados.setForeground(new java.awt.Color(255, 255, 255));
-        btnGestionEmpleados.setText("Gestión de empleados");
-        btnGestionEmpleados.addActionListener(new java.awt.event.ActionListener() {
+        btnVerEmpleados.setBackground(new java.awt.Color(153, 0, 102));
+        btnVerEmpleados.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        btnVerEmpleados.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerEmpleados.setText("Ver empleados");
+        btnVerEmpleados.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGestionEmpleadosActionPerformed(evt);
+                btnVerEmpleadosActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGestionEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 190, 180, 60));
+        jPanel1.add(btnVerEmpleados, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 110, 180, 30));
 
-        btnGestionClientes.setBackground(new java.awt.Color(153, 0, 102));
-        btnGestionClientes.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
-        btnGestionClientes.setForeground(new java.awt.Color(255, 255, 255));
-        btnGestionClientes.setText("Gestión de clientes");
-        btnGestionClientes.addActionListener(new java.awt.event.ActionListener() {
+        btnDespedir.setBackground(new java.awt.Color(153, 0, 102));
+        btnDespedir.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        btnDespedir.setForeground(new java.awt.Color(255, 255, 255));
+        btnDespedir.setText("Despedir");
+        btnDespedir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGestionClientesActionPerformed(evt);
+                btnDespedirActionPerformed(evt);
             }
         });
-        jPanel1.add(btnGestionClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(490, 190, 180, 60));
+        jPanel1.add(btnDespedir, new org.netbeans.lib.awtextra.AbsoluteConstraints(290, 350, 180, 30));
+
+        area1.setEditable(false);
+        area1.setColumns(20);
+        area1.setFont(new java.awt.Font("Roboto Medium", 0, 13)); // NOI18N
+        area1.setRows(5);
+        jScrollPane1.setViewportView(area1);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 160, 560, 170));
+
+        btnVerClientes.setBackground(new java.awt.Color(153, 0, 102));
+        btnVerClientes.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        btnVerClientes.setForeground(new java.awt.Color(255, 255, 255));
+        btnVerClientes.setText("Ver clientes");
+        btnVerClientes.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVerClientesActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnVerClientes, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 110, 180, 30));
+
+        btnContratar.setBackground(new java.awt.Color(153, 0, 102));
+        btnContratar.setFont(new java.awt.Font("Roboto Medium", 0, 14)); // NOI18N
+        btnContratar.setForeground(new java.awt.Color(255, 255, 255));
+        btnContratar.setText("Contratar");
+        btnContratar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnContratarActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnContratar, new org.netbeans.lib.awtextra.AbsoluteConstraints(90, 350, 180, 30));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -137,7 +171,7 @@ public class MainAdmin extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
@@ -149,27 +183,63 @@ public class MainAdmin extends javax.swing.JFrame {
         this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
 
-    private void btnGestionEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionEmpleadosActionPerformed
+    private void btnVerEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerEmpleadosActionPerformed
         try {
             Arbol arbol = new Arbol();
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
             PreparedStatement pst = con.prepareStatement("SELECT * FROM infoempleados");
-            
+
             ResultSet rst = pst.executeQuery();
-            
-            while(rst.next()){
+
+            while (rst.next()) {
                 Empleado em = new Empleado(rst.getInt(1), rst.getNString(2), rst.getNString(3), rst.getNString(4));
-                
                 arbol.insertar(em);
             }
-            arbol.preOrder();
+
+            arbol.preOrder(area1);
         } catch (SQLException e) {
         }
-    }//GEN-LAST:event_btnGestionEmpleadosActionPerformed
+    }//GEN-LAST:event_btnVerEmpleadosActionPerformed
 
-    private void btnGestionClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGestionClientesActionPerformed
+    private void btnDespedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespedirActionPerformed
+        
+        try {
+            int idDespedir = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el id del empleado a despedir"));
+            Arbol arbol = new Arbol();
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM infoempleados");
+
+            ResultSet rst = pst.executeQuery();
+
+            while (rst.next()) {
+                Empleado em = new Empleado(rst.getInt(1), rst.getNString(2), rst.getNString(3), rst.getNString(4));
+                arbol.insertar(em);
+                try {
+                    
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+                    PreparedStatement ps = cn.prepareStatement("DELETE FROM infoempleados WHERE ID = ?");
+
+                    ps.setInt(1, idDespedir);
+                    area1.setText("");
+                    ps.executeUpdate();
+                    arbol.eliminar(idDespedir);
+                } catch (SQLException e) {
+                }
+            }
+
+        } catch (SQLException e) {
+        }
+    }//GEN-LAST:event_btnDespedirActionPerformed
+
+    private void btnVerClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerClientesActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_btnGestionClientesActionPerformed
+    }//GEN-LAST:event_btnVerClientesActionPerformed
+
+    private void btnContratarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratarActionPerformed
+        RegistroEmpleado registroEmpleado = new RegistroEmpleado();
+        registroEmpleado.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_btnContratarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -207,13 +277,17 @@ public class MainAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnGestionClientes;
-    private javax.swing.JButton btnGestionEmpleados;
+    private javax.swing.JTextArea area1;
+    private javax.swing.JButton btnContratar;
+    private javax.swing.JButton btnDespedir;
     private javax.swing.JButton btnSalir;
+    private javax.swing.JButton btnVerClientes;
+    private javax.swing.JButton btnVerEmpleados;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

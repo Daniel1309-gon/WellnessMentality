@@ -54,7 +54,6 @@ public class LoginAdmin extends javax.swing.JFrame {
         txtContraseña = new javax.swing.JPasswordField();
         btnVolver = new javax.swing.JButton();
         btnLogin = new javax.swing.JButton();
-        btnAbrirRegistro = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -154,18 +153,6 @@ public class LoginAdmin extends javax.swing.JFrame {
         });
         jPanel1.add(btnLogin, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 270, -1, -1));
 
-        btnAbrirRegistro.setBackground(new java.awt.Color(153, 0, 102));
-        btnAbrirRegistro.setFont(new java.awt.Font("Roboto Medium", 0, 12)); // NOI18N
-        btnAbrirRegistro.setForeground(new java.awt.Color(255, 255, 255));
-        btnAbrirRegistro.setText("No tienes cuenta? Crea una al instante");
-        btnAbrirRegistro.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-        btnAbrirRegistro.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAbrirRegistroActionPerformed(evt);
-            }
-        });
-        jPanel1.add(btnAbrirRegistro, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 320, -1, -1));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -221,12 +208,6 @@ public class LoginAdmin extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnLoginActionPerformed
 
-    private void btnAbrirRegistroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAbrirRegistroActionPerformed
-        Registro interRegistro = new Registro();
-        interRegistro.setVisible(true);
-        this.setVisible(false);
-    }//GEN-LAST:event_btnAbrirRegistroActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -270,7 +251,6 @@ public class LoginAdmin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnAbrirRegistro;
     private javax.swing.JButton btnLogin;
     private javax.swing.JButton btnVolver;
     private javax.swing.JLabel jLabel1;
