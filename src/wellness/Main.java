@@ -5,7 +5,16 @@
  */
 package wellness;
 
+import com.itextpdf.text.Document;
+import com.itextpdf.text.DocumentException;
+import com.itextpdf.text.pdf.PdfPTable;
+import com.itextpdf.text.pdf.PdfWriter;
+import java.awt.HeadlessException;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.sql.*;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author danig
@@ -15,9 +24,9 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
-    
     String user = "root";
     String password = "";
+
     public Main() {
         initComponents();
         setLocationRelativeTo(null);
@@ -141,11 +150,55 @@ public class Main extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnLogrosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogrosActionPerformed
-        
+        Document reporte = new Document();
+        int id = 0;
+        reporte.addTitle(jLabel1.getText().trim().substring(11) + " estos son tus logros!");
+        try {
+            String ruta = System.getProperty("user.home");
+            PdfWriter.getInstance(reporte, new FileOutputStream(ruta + "/OneDrive/Escritorio/TusLogros" + jLabel1.getText().trim().substring(11) + ".pdf"));
+            reporte.open();
+
+            PdfPTable tabla = new PdfPTable(2);
+            tabla.addCell("No. Logro");
+            tabla.addCell("Logro");
+
+            try {
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+                PreparedStatement ps = con.prepareStatement("SELECT * FROM infoclientes WHERE Nombre = ?");
+
+                ps.setString(1, jLabel1.getText().trim().substring(11));
+                ResultSet result = ps.executeQuery();
+
+                while (result.next()) {
+                    id = result.getInt("ID");
+                }
+                try {
+                    //Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+                    PreparedStatement pst = con.prepareStatement("SELECT * FROM logros WHERE ID = ?");
+
+                    pst.setInt(1, id);
+                    ResultSet rs = pst.executeQuery();
+                    while (rs.next()) {
+                        tabla.addCell(rs.getString("Numero"));
+                        tabla.addCell(rs.getString("Logro"));
+                    }
+                    reporte.add(tabla);
+                } catch (DocumentException | SQLException e) {
+                    System.out.println(e);
+                }
+                reporte.close();
+                JOptionPane.showMessageDialog(null, "Reporte creado");
+
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
+        } catch (DocumentException | HeadlessException | FileNotFoundException e) {
+        }
     }//GEN-LAST:event_btnLogrosActionPerformed
 
     private void btnSalirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSalirActionPerformed
-        Login login  = new Login();
+        Login login = new Login();
         login.setVisible(true);
         this.setVisible(false);
     }//GEN-LAST:event_btnSalirActionPerformed
@@ -156,18 +209,18 @@ public class Main extends javax.swing.JFrame {
         try {
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
             PreparedStatement ps = con.prepareStatement("SELECT * FROM infoclientes WHERE Nombre = ?");
-            
+
             ps.setString(1, jLabel1.getText().trim().substring(11));
             ResultSet rs = ps.executeQuery();
-            
-            while(rs.next()){
+
+            while (rs.next()) {
                 //metas.idTxt.setText(rs.getString("ID"));
                 metas.idLabel.setText(rs.getString("ID"));
             }
         } catch (SQLException e) {
             System.out.println(e);
         }
-        
+
         this.setVisible(false);
         metas.setVisible(true);
     }//GEN-LAST:event_btnMetasActionPerformed

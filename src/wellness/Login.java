@@ -9,6 +9,7 @@ import Administrador.*;
 import java.awt.Color;
 import java.sql.*;
 import java.util.Arrays;
+import java.util.Hashtable;
 import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import org.w3c.dom.css.RGBColor;
@@ -27,11 +28,32 @@ public class Login extends javax.swing.JFrame {
     String usuarioSISTEMA;
     public static String usuarioIngresado;
     char[] clave;
+    Hashtable<String, String> tabla;
+    HashTable hash = new HashTable(100);
 
     public Login() {
+        this.tabla = new Hashtable();
+        this.hash = new HashTable(100);
         initComponents();
         setLocationRelativeTo(null);
         setTitle("Wellness Mentality");
+        setRegisters();
+    }
+
+    public void setRegisters() {
+        try {
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM infoclientes");
+            ResultSet result = pst.executeQuery();
+            while (result.next()) {
+                tabla.put(result.getString("Correo"), result.getString("Password"));
+                hash.set(result.getString("Correo"), result.getString("Password"));
+            }
+            //con.close();
+        } catch (SQLException e) {
+            System.out.println(e);
+        }
+
     }
 
     /**
@@ -198,7 +220,32 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btnAdminActionPerformed
 
     private void btnLogin1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogin1ActionPerformed
+
         try {
+            String usuarioIngresado = txtCorreo.getText().trim();
+            String newpassword = new String(txtContraseña.getPassword());
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM infoclientes WHERE Correo = ?");
+
+            pst.setString(1, usuarioIngresado);
+            ResultSet rs = pst.executeQuery();
+            while (rs.next()) {
+                if (newpassword.equals(hash.get(usuarioIngresado))) {
+                    Main interMain = new Main();
+                    interMain.jLabel1.setText("BIENVENIDO " + rs.getString("Nombre"));
+                    this.setVisible(false);
+                    interMain.setVisible(true);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Datos erroneos");
+                }
+
+            }
+            //System.out.println(tabla.get(user));
+        } catch (SQLException e ) {
+            System.out.println(e);
+        }
+
+        /*try {
             String usuarioIngresado = txtCorreo.getText().trim();
             char[] contraseñaIngresada = txtContraseña.getPassword();
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
@@ -227,7 +274,7 @@ public class Login extends javax.swing.JFrame {
 
         } catch (SQLException e) {
             System.out.println(e);
-        }
+        }*/
     }//GEN-LAST:event_btnLogin1ActionPerformed
 
     /**
