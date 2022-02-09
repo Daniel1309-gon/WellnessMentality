@@ -6,7 +6,7 @@ Proyecto final de Estructuras de datos - Universidad Nacional de Colombia
 
 Aplicación WellnessMentality desarrollada en lenguaje Java por:
 
-Daniel Alejandro González Calderón
-Juan José Rodríguez Moreno
-Luis Alfonso Diaz Vergel
+Daniel Alejandro González Calderón | 
+Juan José Rodríguez Moreno | 
+Luis Alfonso Diaz Vergel | 
 Juan David Ramírez López
