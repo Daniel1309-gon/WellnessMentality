@@ -23,7 +23,7 @@ public class LoginAdmin extends javax.swing.JFrame {
      * Creates new form Login
      */
     String user = "root";
-    String password = "";
+    String password = "password";
     String usuarioSISTEMA;
     public static String usuarioIngresado;
     char[] clave;
@@ -181,7 +181,7 @@ public class LoginAdmin extends javax.swing.JFrame {
         try {
             String usuarioIngresado = txtCorreo.getText().trim();
             char[] contraseñaIngresada = txtContraseña.getPassword();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
             PreparedStatement pst = con.prepareStatement("SELECT * FROM infoadmin WHERE Correo = ?");
 
             pst.setString(1, usuarioIngresado);
@@ -189,7 +189,7 @@ public class LoginAdmin extends javax.swing.JFrame {
                 ResultSet rs = pst.executeQuery();
                 while (rs.next()) {
                     usuarioSISTEMA = rs.getString("Correo");
-                    clave = rs.getString("Password").toCharArray();
+                    clave = rs.getString("Contraseña").toCharArray();
 
                     if (usuarioIngresado.equals(usuarioSISTEMA) && Arrays.equals(contraseñaIngresada, clave)) {
                         MainAdmin mainAdmin = new MainAdmin();

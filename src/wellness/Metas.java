@@ -18,7 +18,7 @@ public class Metas extends javax.swing.JFrame {
      * Creates new form Metas
      */
     String user = "root";
-    String password = "";
+    String password = "password";
 
     String goal;
     public static int id;
@@ -210,7 +210,7 @@ public class Metas extends javax.swing.JFrame {
         //id = Integer.parseInt(idTxt.getText().trim());
         id = Integer.parseInt(idLabel.getText());
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
             PreparedStatement ps = cn.prepareStatement("SELECT * FROM metasclientes WHERE ID = ?");
 
             ps.setInt(1, id);
@@ -236,7 +236,7 @@ public class Metas extends javax.swing.JFrame {
         //id = Integer.parseInt(idTxt.getText().trim());
         id = Integer.parseInt(idLabel.getText());
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
             PreparedStatement ps = cn.prepareStatement("INSERT INTO metasclientes VALUES(?,?,?) ");
 
             if (!metaCombo.getSelectedItem().toString().equals("Selecciona una meta")) {
@@ -266,7 +266,7 @@ public class Metas extends javax.swing.JFrame {
         Main main = new Main();
         id = Integer.parseInt(idLabel.getText());
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
             PreparedStatement ps = cn.prepareStatement("SELECT * FROM infoclientes WHERE ID = ?");
 
             ps.setInt(1, id);
@@ -287,7 +287,7 @@ public class Metas extends javax.swing.JFrame {
         int numeroMeta = Integer.parseInt(JOptionPane.showInputDialog("Ingresa id de la meta a eliminar").trim());
         id = Integer.parseInt(idLabel.getText());
         try {
-            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
             PreparedStatement ps = cn.prepareStatement("SELECT * FROM metasclientes WHERE Numero = ?");
 
             ps.setInt(1, numeroMeta);

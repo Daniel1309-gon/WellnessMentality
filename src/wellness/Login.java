@@ -24,7 +24,7 @@ public class Login extends javax.swing.JFrame {
      * Creates new form Login
      */
     String user = "root";
-    String password = "";
+    String password = "password";
     String usuarioSISTEMA;
     public static String usuarioIngresado;
     char[] clave;
@@ -42,12 +42,12 @@ public class Login extends javax.swing.JFrame {
 
     public void setRegisters() {
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
             PreparedStatement pst = con.prepareStatement("SELECT * FROM infoclientes");
             ResultSet result = pst.executeQuery();
             while (result.next()) {
-                tabla.put(result.getString("Correo"), result.getString("Password"));
-                hash.set(result.getString("Correo"), result.getString("Password"));
+                tabla.put(result.getString("Correo"), result.getString("Contraseña"));
+                hash.set(result.getString("Correo"), result.getString("Contraseña"));
             }
             //con.close();
         } catch (SQLException e) {
@@ -224,7 +224,7 @@ public class Login extends javax.swing.JFrame {
         try {
             String usuarioIngresado = txtCorreo.getText().trim();
             String newpassword = new String(txtContraseña.getPassword());
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
             PreparedStatement pst = con.prepareStatement("SELECT * FROM infoclientes WHERE Correo = ?");
 
             pst.setString(1, usuarioIngresado);

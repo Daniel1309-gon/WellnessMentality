@@ -20,8 +20,8 @@ public class RegistroEmpleado extends javax.swing.JFrame {
     /**
      * Creates new form Registro
      */
-    String user = "root";
-    String password = "";
+    private String user = "root";
+    private String password = "password";
 
     public RegistroEmpleado() {
         initComponents();
@@ -217,7 +217,7 @@ public class RegistroEmpleado extends javax.swing.JFrame {
         Login interLogin = new Login();
 
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
 
             PreparedStatement pst = con.prepareStatement("INSERT INTO infoempleados VALUES(?,?,?,?)");
 

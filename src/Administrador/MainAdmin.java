@@ -15,7 +15,7 @@ import javax.swing.JOptionPane;
 public class MainAdmin extends javax.swing.JFrame {
 
     String user = "root";
-    String password = "";
+    String password = "password";
 
     /**
      * Creates new form MainAdmin
@@ -188,7 +188,7 @@ public class MainAdmin extends javax.swing.JFrame {
         area1.setText("");
         try {
             Arbol arbol = new Arbol();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
             PreparedStatement pst = con.prepareStatement("SELECT * FROM infoempleados");
 
             ResultSet rst = pst.executeQuery();
@@ -208,7 +208,7 @@ public class MainAdmin extends javax.swing.JFrame {
         try {
             int idDespedir = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el id del empleado a despedir"));
             Arbol arbol = new Arbol();
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
             PreparedStatement pst = con.prepareStatement("SELECT * FROM infoempleados");
 
             ResultSet rst = pst.executeQuery();
@@ -218,7 +218,7 @@ public class MainAdmin extends javax.swing.JFrame {
                 arbol.insertar(em);
                 try {
 
-                    Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+                    Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
                     PreparedStatement ps = cn.prepareStatement("DELETE FROM infoempleados WHERE ID = ?");
 
                     ps.setInt(1, idDespedir);
@@ -239,13 +239,13 @@ public class MainAdmin extends javax.swing.JFrame {
         area1.setText("");
         try {
 
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
             PreparedStatement pst = con.prepareStatement("SELECT * FROM infoclientes");
 
             ResultSet rst = pst.executeQuery();
 
             while (rst.next()) {
-                Cliente cliente = new Cliente(rst.getInt("ID"), rst.getString("Nombre"), rst.getString("Correo"), rst.getString("Password"), rst.getFloat("Peso"), rst.getFloat("Altura"));
+                Cliente cliente = new Cliente(rst.getInt("ID"), rst.getString("Nombre"), rst.getString("Correo"), rst.getString("Contraseña"), rst.getFloat("Peso"), rst.getFloat("Altura"));
                 listaEmpleados.add(cliente);
             }
             for (Cliente cli : listaEmpleados) {

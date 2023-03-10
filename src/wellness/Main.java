@@ -25,7 +25,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     String user = "root";
-    String password = "";
+    String password = "password";
 
     public Main() {
         initComponents();
@@ -155,7 +155,8 @@ public class Main extends javax.swing.JFrame {
         reporte.addTitle(jLabel1.getText().trim().substring(11) + " estos son tus logros!");
         try {
             String ruta = System.getProperty("user.home");
-            PdfWriter.getInstance(reporte, new FileOutputStream(ruta + "/OneDrive/Escritorio/TusLogros" + jLabel1.getText().trim().substring(11) + ".pdf"));
+            System.out.println(ruta);
+            PdfWriter.getInstance(reporte, new FileOutputStream(ruta + "/Desktop/TusLogros" + jLabel1.getText().trim().substring(11) + ".pdf"));
             reporte.open();
 
             PdfPTable tabla = new PdfPTable(2);
@@ -163,7 +164,7 @@ public class Main extends javax.swing.JFrame {
             tabla.addCell("Logro");
 
             try {
-                Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+                Connection con = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
                 PreparedStatement ps = con.prepareStatement("SELECT * FROM infoclientes WHERE Nombre = ?");
 
                 ps.setString(1, jLabel1.getText().trim().substring(11));
@@ -207,7 +208,7 @@ public class Main extends javax.swing.JFrame {
         Metas metas = new Metas();
         int idUsuario;
         try {
-            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/prueba1", user, password);
             PreparedStatement ps = con.prepareStatement("SELECT * FROM infoclientes WHERE Nombre = ?");
 
             ps.setString(1, jLabel1.getText().trim().substring(11));
