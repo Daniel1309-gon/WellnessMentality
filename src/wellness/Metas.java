@@ -165,6 +165,7 @@ public class Metas extends javax.swing.JFrame {
         idLabel.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(idLabel, new org.netbeans.lib.awtextra.AbsoluteConstraints(70, 120, 150, 20));
 
+        txtMetas.setEditable(false);
         txtMetas.setColumns(20);
         txtMetas.setFont(new java.awt.Font("Roboto Medium", 0, 13)); // NOI18N
         txtMetas.setRows(5);
@@ -217,7 +218,7 @@ public class Metas extends javax.swing.JFrame {
 
             while (rst.next()) {
                 //JOptionPane.showMessageDialog(null, rst.getString("Meta") + "\n");
-                
+
                 int idmeta = rst.getInt("Numero");
                 String meta = rst.getString("Meta");
                 txtMetas.append(idmeta + ": " + meta + "\n");
@@ -287,14 +288,38 @@ public class Metas extends javax.swing.JFrame {
         id = Integer.parseInt(idLabel.getText());
         try {
             Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
-            PreparedStatement ps = cn.prepareStatement("DELETE FROM metasclientes WHERE Numero = ?");
-            
+            PreparedStatement ps = cn.prepareStatement("SELECT * FROM metasclientes WHERE Numero = ?");
+
             ps.setInt(1, numeroMeta);
-            ps.executeUpdate();
-            txtMetas.setText("");
+            ResultSet rs = ps.executeQuery();
+
+            try {
+                PreparedStatement pst = cn.prepareStatement("INSERT INTO logros VALUES(?, ?, ?)");
+                while (rs.next()) {
+                    pst.setInt(1, id);
+                    pst.setString(2, "0");
+                    pst.setString(3, rs.getString("Meta"));
+                }
+                pst.executeUpdate();
+                txtMetas.setText("");
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+            
+            try {
+                PreparedStatement pst = cn.prepareStatement("DELETE FROM metasclientes WHERE Numero = ?");
+                pst.setInt(1, numeroMeta);
+                pst.executeUpdate();
+                txtMetas.setText("");
+            } catch (SQLException e) {
+                System.out.println(e);
+            }
+
         } catch (SQLException e) {
             System.out.println(e);
         }
+//        int numeroMeta = Integer.parseInt(JOptionPane.showInputDialog("Ingresa id de la meta a eliminar").trim());
+        //id = Integer.parseInt(idLabel.getText());
     }//GEN-LAST:event_btnEliminarMetaActionPerformed
 
     /**

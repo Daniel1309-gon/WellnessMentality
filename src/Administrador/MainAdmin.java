@@ -9,6 +9,7 @@ package Administrador;
  * @author danig
  */
 import java.sql.*;
+import java.util.LinkedList;
 import javax.swing.JOptionPane;
 
 public class MainAdmin extends javax.swing.JFrame {
@@ -184,6 +185,7 @@ public class MainAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnSalirActionPerformed
 
     private void btnVerEmpleadosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerEmpleadosActionPerformed
+        area1.setText("");
         try {
             Arbol arbol = new Arbol();
             Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
@@ -202,7 +204,7 @@ public class MainAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnVerEmpleadosActionPerformed
 
     private void btnDespedirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDespedirActionPerformed
-        
+
         try {
             int idDespedir = Integer.parseInt(JOptionPane.showInputDialog(null, "Ingrese el id del empleado a despedir"));
             Arbol arbol = new Arbol();
@@ -215,7 +217,7 @@ public class MainAdmin extends javax.swing.JFrame {
                 Empleado em = new Empleado(rst.getInt(1), rst.getNString(2), rst.getNString(3), rst.getNString(4));
                 arbol.insertar(em);
                 try {
-                    
+
                     Connection cn = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
                     PreparedStatement ps = cn.prepareStatement("DELETE FROM infoempleados WHERE ID = ?");
 
@@ -232,7 +234,27 @@ public class MainAdmin extends javax.swing.JFrame {
     }//GEN-LAST:event_btnDespedirActionPerformed
 
     private void btnVerClientesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVerClientesActionPerformed
-        // TODO add your handling code here:
+        LinkedList<Cliente> listaEmpleados = new LinkedList();
+        //listaEmpleados.add(new Empleado(WIDTH, user, user, user))
+        area1.setText("");
+        try {
+
+            Connection con = DriverManager.getConnection("jdbc:mysql://localhost/wellness", user, password);
+            PreparedStatement pst = con.prepareStatement("SELECT * FROM infoclientes");
+
+            ResultSet rst = pst.executeQuery();
+
+            while (rst.next()) {
+                Cliente cliente = new Cliente(rst.getInt("ID"), rst.getString("Nombre"), rst.getString("Correo"), rst.getString("Password"), rst.getFloat("Peso"), rst.getFloat("Altura"));
+                listaEmpleados.add(cliente);
+            }
+            for (Cliente cli : listaEmpleados) {
+                System.out.println(cli);
+                area1.append(cli + "\n");
+            }
+
+        } catch (SQLException e) {
+        }
     }//GEN-LAST:event_btnVerClientesActionPerformed
 
     private void btnContratarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContratarActionPerformed
